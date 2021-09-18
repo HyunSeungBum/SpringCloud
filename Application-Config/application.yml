@@ -34,6 +34,14 @@ management:
       exposure:
         include: "refresh"
 
+# -- Eureka 에 등록된 ConfigServer 를 호출하도록 설정
+spring:
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: configserver
+
 #spring:
 #  profiles:
 #    include: eureka
