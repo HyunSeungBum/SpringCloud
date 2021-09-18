@@ -1,16 +1,15 @@
 package local.systemv.springcloudexam.employee.producer.model;
 
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-@Builder
+@Getter
+@Setter
 public class Employee {
 
-	private String empId;
+	private Long empId;
 	private String name;
 	private String description;
 	private double salary;
