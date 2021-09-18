@@ -18,14 +18,14 @@ public class GatewayServiceFilter extends AbstractGatewayFilterFactory<Config> {
 	public GatewayFilter apply(Config config) {
 		// TODO Auto-generated method stub
 		return (exchange, chain) -> {
-			log.info("GlobalFilter baseMessage: {}", config.getBaseMessage());
+			log.info("GatewayServiceFilter baseMessage: {}", config.getBaseMessage());
 
 			if (config.isPreLogger()) {
-				log.info("GlobalFilter Start: {}", exchange.getRequest());
+				log.info("GatewayServiceFilter Start: {}", exchange.getRequest());
 			}
 			return chain.filter(exchange).then(Mono.fromRunnable(() -> {
 				if (config.isPostLogger()) {
-					log.info("GlobalFilter End: {}", exchange.getResponse());
+					log.info("GatewayServiceFilter End: {}", exchange.getResponse());
 				}
 
 			}));
