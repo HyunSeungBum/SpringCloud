@@ -42,3 +42,19 @@ eureka:
          
 server:
   port: 9092
+  
+---
+spring:
+  config:
+    activate:
+      on-profile: service
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://admin:admin@${employee.appconfig.peer1-address}/eureka}, ${EUREKA_URL:http://admin:admin@${employee.appconfig.peer2-address}/eureka}
+       
+server:
+  port: 9093
