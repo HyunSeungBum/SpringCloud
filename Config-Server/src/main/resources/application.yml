@@ -8,8 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: http://gitlab.systemv.local:8001/spring-msa/spring-config-server.git
-          username: systemv
-          password: pegasus1
+          uri: https://github.com/HyunSeungBum/SpringCloudExam.git
+          search-paths: Application-Config
           default-label: master
           force-pull: true
