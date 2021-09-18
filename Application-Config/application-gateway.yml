@@ -14,9 +14,9 @@ spring:
             postLogger: true
       routes:
         - id: gateway-service
-          uri: lb://GATEWAY-SERVICE
+          uri: lb://EMPLOYEE-PRODUCER
           predicates:
-            - Path=/gateway/**
+            - Path=/employee/**
           filters:
             - name: GatewayServiceFilter
               args:
