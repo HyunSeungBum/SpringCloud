@@ -45,6 +45,8 @@ server:
   
 ---
 spring:
+  application:
+    name: gateway-service
   config:
     activate:
       on-profile: service
