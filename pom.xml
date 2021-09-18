@@ -11,6 +11,7 @@
 		<module>Eureka-Server</module>
 		<module>Employee-Consumer</module>
 		<module>Employee-Producer</module>
+		<module>Spring-Gateway</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
