@@ -12,3 +12,8 @@ spring:
           search-paths: Application-Config
           default-label: master
           force-pull: true
+              
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://admin:admin@127.0.0.1:8761/eureka}, ${EUREKA_URL:http://admin:admin@127.0.0.1:8762/eureka} 
