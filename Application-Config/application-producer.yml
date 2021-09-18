@@ -1,0 +1,37 @@
+
+spring:
+  application:
+    name: ${employee.appconfig.producer-alias}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: producer1
+    
+server:
+  port: ${employee.appconfig.producer-port1}
+  
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://admin:admin@${employee.appconfig.peer1-address}/eureka}
+    
+---
+spring:
+  config:
+    activate:
+      on-profile: producer2
+    
+server:
+  port: ${employee.appconfig.producer-port2}
+  
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://admin:admin@${employee.appconfig.peer1-address}/eureka}
+ 

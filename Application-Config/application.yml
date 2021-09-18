@@ -1,0 +1,77 @@
+tpd:
+  eureka:
+    server:
+      port:
+        peer1-port: 8761
+        peer2-port: 8762
+      hostname:
+        peer1: eureka-peer1
+        peer2: eureka-peer2
+    application:
+      name: eureka-peer
+  
+employee:
+  appconfig:
+    producer-alias: employee-producer
+    consumer-alias: employee-consumer
+    producer-port1: 8080
+    producer-port2: 8081
+    consumer-port: 8091
+    peer1-address: ${tpd.eureka.server.hostname.peer1}:${tpd.eureka.server.port.peer1-port}
+    peer2-address: ${tpd.eureka.server.hostname.peer2}:${tpd.eureka.server.port.peer2-port}
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 10
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    
+#-- Acturator to refresh from config server
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "refresh"
+
+#spring:
+#  profiles:
+#    include: eureka
+
+#spring:
+#  profiles:
+#    group:
+#      eureka-peer1: 
+#        - eureka
+#        - peer1
+#      eureka-peer2: 
+#        - eureka
+#        - peer2
+#      producer1:
+#        - producer
+#        - producer1
+#      producer2:
+#        - producer
+#        - producer2
+
+---
+spring:
+  config:
+    activate:
+      on-profile: consumer
+  application:
+    name: ${employee.appconfig.consumer-alias}
+
+        
+server:
+  port: ${employee.appconfig.consumer-port}
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://admin:admin@${employee.appconfig.peer1-address}/eureka}
+    enabled: true
+      
+ribbon:
+  eureka:
+    enabled: false

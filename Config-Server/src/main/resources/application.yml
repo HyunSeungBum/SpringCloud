@@ -1,0 +1,15 @@
+server:
+  port: 8088
+  
+spring:
+  application:
+    name: configserver
+  cloud:
+    config:
+      server:
+        git:
+          uri: http://gitlab.systemv.local:8001/spring-msa/spring-config-server.git
+          username: systemv
+          password: pegasus1
+          default-label: master
+          force-pull: true

@@ -1,0 +1,67 @@
+
+
+spring:
+  application:
+    name: ${tpd.eureka.application.name}
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  security:
+    user:
+      name: admin
+      password: admin
+      
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      #base-path: /
+      # By default, only 'health' and 'info' are accesssible via web
+      exposure:
+        include:
+          - health
+          - info
+
+---
+spring:
+  config:
+    activate:
+      on-profile: peer1
+
+eureka:
+  instance:
+    hostname: ${tpd.eureka.server.hostname.peer1}
+    # Either this one or the spring boot name must be the same
+    # (it works without setting it too, using the alias UNKNOWN)
+    #appname: eureka-peer
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://admin:admin@${tpd.eureka.server.hostname.peer2}:${tpd.eureka.server.port.peer2-port}/eureka/}
+
+server:
+  port: ${tpd.eureka.server.port.peer1-port}
+  shutdown: graceful
+
+---
+spring:
+  config:
+    activate:
+      on-profile: peer2
+
+eureka:
+  instance:
+    hostname: ${tpd.eureka.server.hostname.peer2}
+    # Either this one or the spring boot name must be the same
+    # (it works without setting it too, using the alias UNKNOWN)
+    #appname: eureka-peer
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://admin:admin@${tpd.eureka.server.hostname.peer1}:${tpd.eureka.server.port.peer1-port}/eureka/}
+
+server:
+  port: ${tpd.eureka.server.port.peer2-port}
+  shutdown: graceful
