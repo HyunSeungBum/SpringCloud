@@ -69,7 +69,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: ${EUREKA_URL:http://admin:admin@${employee.appconfig.peer1-address}/eureka}
+      defaultZone: ${EUREKA_URL:http://admin:admin@${employee.appconfig.peer1-address}/eureka}, ${EUREKA_URL:http://admin:admin@${employee.appconfig.peer2-address}/eureka}
     enabled: true
       
 ribbon:
