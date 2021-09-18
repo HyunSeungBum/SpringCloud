@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: spring-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      default-filters:
+        - name: GlobalFilter
+          args:
+            baseMessage: Spring Cloud Gateway GlobalFilter
+            preLogger: true
+            postLogger: true
+      routes:
+        - id: employee-service
+          uri: lb://EMPLOYEE-CONSUMER
+          predicates:
+            - Path=/employee
+          filters:
+            - name: EmployeeFilter
+              args:
+                baseMessage: Employee Filter
+                preLogger: true
+                postLogger: true
+
+management:
+  endpoint:
+    gateway:
+      enabled: true 
+  endpoints:
+    web:
+      exposure:
+        include: gateway
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://admin:admin@${employee.appconfig.peer1-address}/eureka}, ${EUREKA_URL:http://admin:admin@${employee.appconfig.peer2-address}/eureka}
+         
+server:
+  port: 9092
