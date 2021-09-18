@@ -16,7 +16,7 @@ spring:
         - id: gateway-service
           uri: lb://GATEWAY-SERVICE
           predicates:
-            - Path=/gateway
+            - Path=/gateway/**
           filters:
             - name: GatewayServiceFilter
               args:
