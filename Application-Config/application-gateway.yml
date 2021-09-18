@@ -14,7 +14,7 @@ spring:
             postLogger: true
       routes:
         - id: gateway-service
-          uri: lb://GATEWAY-SERVICE
+          uri: http://localhost:9093
           predicates:
             - Path=/gateway/**
           filters:
