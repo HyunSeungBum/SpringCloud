@@ -13,14 +13,14 @@ spring:
             preLogger: true
             postLogger: true
       routes:
-        - id: employee-service
-          uri: lb://EMPLOYEE-PRODUCER
+        - id: gateway-service
+          uri: lb://GATEWAY-SERVICE
           predicates:
-            - Path=/employee
+            - Path=/gateway
           filters:
-            - name: EmployeeFilter
+            - name: GatewayServiceFilter
               args:
-                baseMessage: Employee Filter
+                baseMessage: Gateway Filter
                 preLogger: true
                 postLogger: true
 
