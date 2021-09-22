@@ -13,6 +13,7 @@
 		<module>Employee-Producer</module>
 		<module>Spring-Gateway</module>
 		<module>Spring-OpenFeign</module>
+		<module>Spring-WebClient</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
