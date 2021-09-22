@@ -16,9 +16,9 @@ spring:
         - id: gateway-service
           uri: lb://EMPLOYEE-PRODUCER
           predicates:
-            - Path=/api/v1/employee/**
+            - Path=/api/v1/**
           filters:
-            - RewritePath=/api/v1/employee/?(?<segment>.*), /$\{segment}
+            - RewritePath=/api/v1/?(?<segment>.*), /$\{segment}
             - name: GatewayServiceFilter
               args:
                 baseMessage: Gateway Filter
