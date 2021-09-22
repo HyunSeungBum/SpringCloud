@@ -1,4 +1,4 @@
-package local.systemv.springcloudexam.openfeign;
+package local.systemv.springcloudexam.webclient;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
